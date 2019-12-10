@@ -21,6 +21,7 @@ Vue.component('patient-create', require('./components/patients/create.vue').defa
 Vue.component('patient-infos', require('./components/patients/patientComponent.vue').default);
 
 Vue.component('document-create', require('./components/MH/create.vue').default);
+Vue.component('document-show', require('./components/MH/show.vue').default);
 
 
 

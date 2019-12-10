@@ -18,6 +18,12 @@ class MedicalHistoryController extends Controller
       $count_docs = $patient->histories()->count();
       return view('MH.create', compact('patient', 'count_docs'));
     }
+    public function mhshow($id) {
+      $history = MedicalHistory::findOrFail($id);
+      $patient = Patient::findOrFail($history->patient_id);
+
+      return view('MH.show', compact('history', 'patient'));
+    }
 
     public function index()
     {

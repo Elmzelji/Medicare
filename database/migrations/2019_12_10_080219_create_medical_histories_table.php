@@ -22,6 +22,7 @@ class CreateMedicalHistoriesTable extends Migration
             $table->json('ATCD')->nullable();
             $table->json('EXCV')->nullable();
             $table->json('CAF')->nullable();
+            $table->mediumText('note')->nullable();
             $table->timestamps();
         });
     }

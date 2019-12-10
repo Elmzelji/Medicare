@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Patient;
+use App\MedicalHistory;
 use Illuminate\Http\Request;
 use Response;
 
@@ -18,7 +19,8 @@ class PatientController extends Controller
     }
     public function patientshow($id) {
       $patient = Patient::findOrFail($id);
-      return view('patients.patient', compact('patient'));
+      $docs = $patient->histories()->get();
+      return view('patients.patient', compact('patient', 'docs'));
     }
 
     public function index(Request $request)

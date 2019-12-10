@@ -28,6 +28,8 @@ Route::get('/patients/show/{id}', 'PatientController@patientshow')->name('patien
 //Medical histories Routes
 Route::get('/medical/docs', 'MedicalHistoryController@mhindex')->name('documents_page');
 Route::get('/medical/patient/{id}/new', 'MedicalHistoryController@mhcreate')->name('create_document_page');
+Route::get('/medical/doc/{id}', 'MedicalHistoryController@mhshow')->name('show_document_page');
+
 
 
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');
