@@ -1,6 +1,6 @@
 <template>
 <div class="flex flex-col">
-    <div class="flex justify-between items-center mt-4">
+    <div class="flex flex-col sm:flex-row justify-between items-center mt-4">
         <div class="">
             <a href="/apipatients/create" class="bg-doc_primary hover:bg-gray-400 hover:text-doc_text text-white font-bold py-2 px-4 rounded inline-flex items-center">
 
@@ -18,14 +18,14 @@
                 <span>Ajouter un patient</span>
             </a>
         </div>
-        <div class="flex">
-            <input class="py-2 px-4 pr-8" type="text" v-model="tableData.search" placeholder="Chercher un patient" @input="getPatients()">
+        <div class="flex mt-4 sm:mt-0">
+            <input class="py-2 px-4 pr-8" type="text" v-model="tableData.search" placeholder="Chercher un patient" @input="getPatients()" :disabled="patients">
 
             <div class="ml-4">
                 <div class="flex items-center">
-                    <select class="text-sm block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 rounded" v-model="tableData.length" @change="getPatients()">
+                    <select class="text-sm block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 rounded" v-model="tableData.length" @change="getPatients()" :disabled="patients">
                         <option v-for="(records, index) in perPage" :key="index" :value="records">
-                            {{records}} Par page
+                            {{records}} / page
                         </option>
                     </select>
                 </div>
@@ -34,37 +34,48 @@
 
 
     </div>
-    <datatable class="mt-6 bg-white" :columns="columns" :sortKey="sortKey" :sortOrders="sortOrders" @sort="sortBy">
-        <tbody>
-            <tr v-for="patient in patients" :key="patient.id">
-                <td class="border px-4 py-2">{{patient.firstName}}</td>
-                <td class="border px-4 py-2">
-                    <div v-if="calculateAge(patient.birthDate) < 15" class="bg-gray-300 h-2 w-2 rounded-full ml-2 inline-block"></div>
-                    <div v-if="calculateAge(patient.birthDate) > 15 && patient.gender == 'homme'" class="bg-blue-600 h-2 w-2 rounded-full ml-2 inline-block"></div>
-                    <div v-if="calculateAge(patient.birthDate) > 15 && patient.gender == 'femelle'" class="bg-pink-600 h-2 w-2 rounded-full ml-2 inline-block"></div>
-                    <span class="uppercase">
-                        {{patient.lastName}}
-                    </span>
-                </td>
-                <td class="border px-4 py-2">{{patient.phoneNumber}}</td>
-                <td class=" border text-doc_text px-4 py-2">
 
-                    <a :href="'/patients/show/'+patient.id" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
+    <div class="mt-12 text-center" :class="patients?'hidden':''">
+        <p class="text-lg">Sorry there is no patient to show ! try to add some</p>
+    </div>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-4 h-4 mr-2">
-                            <path
-                              d="M19.398 7.415l-7.444-1.996L10.651.558c-.109-.406-.545-.642-.973-.529L.602 2.461c-.428.114-.686.538-.577.944l3.23 12.051c.109.406.544.643.971.527l3.613-.967-.492 1.838c-.109.406.149.83.577.943l8.11 2.174c.428.115.862-.121.972-.529l2.97-11.084c.108-.406-.15-.83-.578-.943zM1.633 3.631l7.83-2.096 2.898 10.818-7.83 2.096L1.633 3.631zm14.045 14.832L8.864 16.6l.536-2.002 3.901-1.047c.428-.113.688-.537.578-.943l-1.508-5.627 5.947 1.631-2.64 9.851z" />
-                        </svg>
+    <section :class="patients?'':'hidden'">
+        <datatable class="overflow-x-scroll sm:overflow-hidden mt-6 bg-white" :columns="columns" :sortKey="sortKey" :sortOrders="sortOrders" @sort="sortBy">
+            <tbody>
+                <tr v-for="patient in patients" :key="patient.id">
+                    <td class="border px-4 py-2">{{patient.firstName}}</td>
+                    <td class="border px-4 py-2">
+                        <div v-if="calculateAge(patient.birthDate) < 15" class="bg-gray-300 h-2 w-2 rounded-full ml-2 inline-block"></div>
+                        <div v-if="calculateAge(patient.birthDate) > 15 && patient.gender == 'homme'" class="bg-blue-600 h-2 w-2 rounded-full ml-2 inline-block"></div>
+                        <div v-if="calculateAge(patient.birthDate) > 15 && patient.gender == 'femelle'" class="bg-pink-600 h-2 w-2 rounded-full ml-2 inline-block"></div>
+                        <span class="uppercase">
+                            {{patient.lastName}}
+                        </span>
+                    </td>
+                    <td class="border px-4 py-2">{{patient.phoneNumber}}</td>
+                    <td class=" border text-doc_text px-4 py-2">
 
-                        <span>Afficher</span>
-                    </a>
+                        <a :href="'/patients/show/'+patient.id" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center">
 
-                </td>
-            </tr>
-        </tbody>
-    </datatable>
-    <pagination :pagination="pagination" @prev="getPatients(pagination.prevPageUrl)" @next="getPatients(pagination.nextPageUrl)">
-    </pagination>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current w-4 h-4 mr-2">
+                                <path
+                                  d="M19.398 7.415l-7.444-1.996L10.651.558c-.109-.406-.545-.642-.973-.529L.602 2.461c-.428.114-.686.538-.577.944l3.23 12.051c.109.406.544.643.971.527l3.613-.967-.492 1.838c-.109.406.149.83.577.943l8.11 2.174c.428.115.862-.121.972-.529l2.97-11.084c.108-.406-.15-.83-.578-.943zM1.633 3.631l7.83-2.096 2.898 10.818-7.83 2.096L1.633 3.631zm14.045 14.832L8.864 16.6l.536-2.002 3.901-1.047c.428-.113.688-.537.578-.943l-1.508-5.627 5.947 1.631-2.64 9.851z" />
+                            </svg>
+
+                            <span>Afficher</span>
+                        </a>
+
+                    </td>
+                </tr>
+            </tbody>
+        </datatable>
+    </section>
+
+    <section :class="patients?'':'hidden'">
+        <pagination :pagination="pagination" @prev="getPatients(pagination.prevPageUrl)" @next="getPatients(pagination.nextPageUrl)">
+        </pagination>
+    </section>
+
 
 
 

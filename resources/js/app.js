@@ -19,6 +19,9 @@ Vue.component('patients', require('./components/patients/patientsComponent.vue')
 Vue.component('patient-create', require('./components/patients/create.vue').default);
 Vue.component('patient-infos', require('./components/patients/patientComponent.vue').default);
 
+Vue.component('document-create', require('./components/MH/create.vue').default);
+
+
 
 const app = new Vue({
     el: '#app',

@@ -16,8 +16,8 @@ class CreateMedicalHistoriesTable extends Migration
         Schema::create('medical_histories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('Reference');
-            $table->bigInteger('patient')->unsigned();
-            $table->foreign('patient')->references('id')->on('patients');
+            $table->bigInteger('patient_id')->unsigned();
+            $table->foreign('patient_id')->references('id')->on('patients');
             $table->integer('weight');
             $table->mediumText('ATCD')->nullable();
             $table->mediumText('EXCV')->nullable();

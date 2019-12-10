@@ -23,4 +23,9 @@ Route::resource('apipatients', 'PatientController');
 Route::get('/patients', 'PatientController@patientsindex')->name('patients_page');
 Route::get('/patients/show/{id}', 'PatientController@patientshow')->name('patient_page');
 
+//Medical histories Routes
+Route::get('/medical/docs', 'MedicalHistoryController@mhindex')->name('documents_page');
+Route::get('/medical/patient/{id}/new', 'MedicalHistoryController@mhcreate')->name('create_document_page');
+
+
 Route::get('/dashboard', 'HomeController@index')->name('dashboard');

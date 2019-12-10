@@ -1,14 +1,22 @@
 <template>
 <div class="text-center py-8 leading-relaxed">
-    <div class="flex items-start">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current text-doc_primary w-6">
-            <path
-              d="M12.452 4.516c.446.436.481 1.043 0 1.576L8.705 10l3.747 3.908c.481.533.446 1.141 0 1.574-.445.436-1.197.408-1.615 0-.418-.406-4.502-4.695-4.502-4.695a1.095 1.095 0 010-1.576s4.084-4.287 4.502-4.695c.418-.409 1.17-.436 1.615 0z" />
-        </svg>
-        <a :href="back_url" class="text-doc_primary">Retour aux patients</a>
+    <div class="flex justify-between">
+        <div class="flex items-center">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current text-doc_primary w-6">
+                <path
+                  d="M12.452 4.516c.446.436.481 1.043 0 1.576L8.705 10l3.747 3.908c.481.533.446 1.141 0 1.574-.445.436-1.197.408-1.615 0-.418-.406-4.502-4.695-4.502-4.695a1.095 1.095 0 010-1.576s4.084-4.287 4.502-4.695c.418-.409 1.17-.436 1.615 0z" />
+            </svg>
+            <a :href="back_url" class="text-doc_primary">Retour aux patients</a>
+        </div>
+        <div class="flex items-center">
+            <a :href="medical_doc_url" class="text-doc_primary">Dossier médical</a>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current text-doc_primary w-6">
+                <path d="M16 10c0 .553-.048 1-.601 1H11v4.399c0 .552-.447.601-1 .601-.553 0-1-.049-1-.601V11H4.601C4.049 11 4 10.553 4 10c0-.553.049-1 .601-1H9V4.601C9 4.048 9.447 4 10 4c.553 0 1 .048 1 .601V9h4.399c.553 0 .601.447.601 1z" />
+            </svg>
+        </div>
     </div>
-    <h1 class="text-xl font-semibold">{{patient_data.firstName}} {{patient_data.lastName}}</h1>
-    <div class="text-left bg-white border shadow p-6 mt-6">
+    <h1 class="mt-4 sm:mt-0 text-xl font-semibold">{{patient_data.firstName}} {{patient_data.lastName}}</h1>
+    <div class="text-left bg-white shadow p-6 mt-6">
 
         <div class="flex justify-between">
             <div class="flex items-center">
@@ -30,8 +38,8 @@
         <form>
             <slot></slot>
 
-            <div class="mt-4 flex">
-                <div class="w-1/3">
+            <div class="mt-4 flex flex-col sm:flex-row">
+                <div class="mt-4 sm:mt-0 sm:w-1/3">
                     <h1 class="font-medium text-sm text-gray-600 uppercase">INFOS PERSONNELLES</h1>
                     <div class="mt-6">
                         <h2 class="font-semibold uppercase text-gray-700 text-sm">Nom:</h2>
@@ -58,7 +66,7 @@
                           :value="patient_data.birthDate">
                     </div>
                 </div>
-                <div class="w-1/3 mx-6">
+                <div class="mt-4 sm:mt-0 sm:w-1/3 sm:mx-6">
                     <h1 class="font-medium text-sm text-gray-600 uppercase">Contact</h1>
                     <div class="mt-6">
                         <h2 class="font-semibold uppercase text-gray-700 text-sm">Téléphone:</h2>
@@ -73,7 +81,7 @@
                           :placeholder="patient_data.addresse" :value="patient_data.addresse">
                     </div>
                 </div>
-                <div class="w-1/3">
+                <div class="mt-4 sm:mt-0 sm:w-1/3">
                     <h1 class="font-medium text-sm text-gray-600 uppercase">référencement</h1>
                     <div class="mt-6">
                         <h2 class="font-semibold uppercase text-gray-700 text-sm">Envoyé par:</h2>
@@ -83,7 +91,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="isUpdateActive" class="flex justify-end items-center">
+            <div v-if="isUpdateActive" class="mt-4 sm:mt-0 flex justify-end items-center">
                 <loader v-if="isLoading"></loader>
                 <button v-else="!isLoading" @click.prevent="updatePatient()" type="button" class="bg-doc_primary hover:bg-gray-400 hover:text-doc_text text-white font-bold py-2 px-4 rounded inline-flex items-center">
 
@@ -102,7 +110,7 @@
 
 <script>
 export default {
-    props: ['patient', 'back_url'],
+    props: ['patient', 'back_url', 'medical_doc_url'],
 
     data: function() {
         return {
