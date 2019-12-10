@@ -18,6 +18,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::resource('apipatients', 'PatientController');
+Route::resource('apidocs', 'MedicalHistoryController');
+
 
 // Patients Routes
 Route::get('/patients', 'PatientController@patientsindex')->name('patients_page');

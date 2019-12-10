@@ -137,11 +137,11 @@ export default {
                     })
                     .then(response => {
                         this.isLoading = false;
-                        console.log(response);
+                        // console.log(response);
                         window.location.href = '/patients/show/' + response.data.data.id;
                     })
                     .catch(errors => {
-                        console.log(errors.response);
+                        // console.log(errors.response);
                         this.isLoading = false;
                         this.message = {
                             text: "Quelque chose s\'est mal passé, vérifiez à nouveau les données fournies.",

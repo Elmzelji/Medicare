@@ -19,9 +19,9 @@ class CreateMedicalHistoriesTable extends Migration
             $table->bigInteger('patient_id')->unsigned();
             $table->foreign('patient_id')->references('id')->on('patients');
             $table->integer('weight');
-            $table->mediumText('ATCD')->nullable();
-            $table->mediumText('EXCV')->nullable();
-            $table->mediumText('CAF')->nullable();
+            $table->json('ATCD')->nullable();
+            $table->json('EXCV')->nullable();
+            $table->json('CAF')->nullable();
             $table->timestamps();
         });
     }

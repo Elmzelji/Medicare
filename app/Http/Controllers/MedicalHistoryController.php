@@ -33,7 +33,20 @@ class MedicalHistoryController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $doc = new MedicalHistory();
+
+        $doc->Reference= $request->input('Reference');
+        $doc->patient_id= $request->input('patient_id');
+        $doc->weight= $request->input('weight');
+        $doc->ATCD= json_encode($request->input('ATCD'));
+        $doc->EXCV= json_encode($request->input('EXCV'));
+        $doc->CAF= json_encode($request->input('CAF'));
+
+        if($doc->save()) {
+          return ['data' => $doc];
+        }else {
+          return ['errors' => $doc, 'message'=>'Quelque chose s\'est mal passé, vérifiez à nouveau les données fournies.'];
+        }
     }
 
 
