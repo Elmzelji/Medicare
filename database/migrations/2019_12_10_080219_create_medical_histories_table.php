@@ -24,6 +24,7 @@ class CreateMedicalHistoriesTable extends Migration
             $table->json('CAF')->nullable();
             $table->mediumText('note')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

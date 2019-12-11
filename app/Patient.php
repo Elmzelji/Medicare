@@ -10,5 +10,6 @@ class Patient extends Model
     {
         return $this->hasMany('App\MedicalHistory');
     }
+    use SoftDeletes;
     public $timestamps = true;
 }

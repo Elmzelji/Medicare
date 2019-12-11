@@ -24,6 +24,7 @@ class CreatePatientsTable extends Migration
           $table->string('phoneNumber')->nullable();
           $table->string('sentBy')->nullable();
           $table->timestamps();
+          $table->softDeletes();
         });
     }
 

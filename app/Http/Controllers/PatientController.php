@@ -94,8 +94,13 @@ class PatientController extends Controller
       }
     }
 
-    public function destroy(Patient $patient)
+    public function destroy($id)
     {
-        //
+        $patient = Patient::findOrFail($id);
+        if($patient->delete()){
+          return ['data' => 'Patient deleted'];
+        }else {
+          return ['errors' => '', 'message'=>'Quelque chose s\'est mal passé, vérifiez à nouveau les données fournies.'];
+        }
     }
 }

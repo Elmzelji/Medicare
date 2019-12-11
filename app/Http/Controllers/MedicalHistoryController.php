@@ -82,8 +82,13 @@ class MedicalHistoryController extends Controller
       }
     }
 
-    public function destroy(MedicalHistory $medicalHistory)
+    public function destroy($id)
     {
-        //
+      $history = MedicalHistory::findOrFail($id);
+      if($history->delete()){
+        return ['data' => 'Medical recode deleted'];
+      }else {
+        return ['errors' => '', 'message'=>'Quelque chose s\'est mal passé, vérifiez à nouveau les données fournies.'];
+      }
     }
 }
