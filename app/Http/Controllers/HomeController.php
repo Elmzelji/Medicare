@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Patient;
+use App\MedicalHistory;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,7 +29,7 @@ class HomeController extends Controller
       $currentYear = date('Y');
       $patients = Patient::whereMonth('created_at', '=', $currentMonth)->get();
       $patients_year = Patient::whereYear('created_at', '=', $currentYear)->count();
-
-      return view('dashboard', compact('patients', 'patients_year'));
+      $histories = MedicalHistory::all()->count();
+      return view('dashboard', compact('patients', 'patients_year', 'histories'));
     }
 }

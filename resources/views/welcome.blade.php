@@ -62,7 +62,7 @@
     </section>
 
     <!-- How it works -->
-    <section class="mt-32">
+    <!-- <section class="mt-32">
         <h1 class="uppercase text-2xl font-semibold">Nos services</h1>
         <div class="border-b-2 border-doc_primary mt-2 w-12"></div>
 
@@ -108,7 +108,7 @@
                 </p>
             </div>
         </div>
-    </section>
+    </section> -->
 
     <!-- Use case -->
     <!-- <section class="mt-32">

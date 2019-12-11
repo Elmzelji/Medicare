@@ -1923,6 +1923,85 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       reference: this.generateRef(),
+      items: [{
+        name: 'Traumatisme',
+        symbole: '𝓩'
+      }, {
+        name: 'Fracture',
+        symbole: 'F̸'
+      }, {
+        name: 'Tissu',
+        symbole: 'T̸'
+      }, {
+        name: 'Grossesse',
+        symbole: 'G̅'
+      }, {
+        name: 'Grossesse extra urerine',
+        symbole: 'GEU'
+      }, {
+        name: 'Pression',
+        symbole: 'P̅'
+      }, {
+        name: 'Diabeter',
+        symbole: '(D)'
+      }, {
+        name: 'Douleur',
+        symbole: 'D̅'
+      }, {
+        name: 'Diarrhée',
+        symbole: 'D̲'
+      }, {
+        name: 'carrot',
+        symbole: 'D̲ C'
+      }, {
+        name: 'Histolo',
+        symbole: 'H̸'
+      }, {
+        name: 'Cytologie',
+        symbole: 'C̸'
+      }, {
+        name: 'Trouble psychique',
+        symbole: '𝒯 psy'
+      }, {
+        name: 'Insuffisance coronarienne',
+        symbole: 'I Cˣ'
+      }, {
+        name: 'Insuffisance respiratoire',
+        symbole: 'I Resp'
+      }, {
+        name: 'Insuffisance rerale',
+        symbole: 'I Rᴸ'
+      }, {
+        name: 'Insuffisance hépatique',
+        symbole: 'I Hep'
+      }, {
+        name: 'Hysterie',
+        symbole: 'H'
+      }, {
+        name: 'Splenomegalie',
+        symbole: 'SMG'
+      }, {
+        name: 'Hépatomégalie',
+        symbole: 'HMG'
+      }, {
+        name: 'Adénopathie',
+        symbole: 'ADP'
+      }, {
+        name: 'Adénopathie latero cervicale',
+        symbole: 'ADP+LC'
+      }, {
+        name: 'Ganglion',
+        symbole: 'gg'
+      }, {
+        name: 'Rein',
+        symbole: 'Rᶦ'
+      }, {
+        name: 'Néphrectomie',
+        symbole: 'Řᶦ'
+      }, {
+        name: 'Vesicle biliar',
+        symbole: 'VB'
+      }],
       weight: null,
       note: null,
       tagsATCD: [],
@@ -1975,7 +2054,8 @@ __webpack_require__.r(__webpack_exports__);
           weight: this.weight,
           ATCD: this.tagsATCD,
           EXCV: this.tagsEXCV,
-          CAF: this.tagsCAF
+          CAF: this.tagsCAF,
+          note: this.note
         }).then(function (response) {
           _this.isLoading = false;
           console.log(response);
@@ -2136,24 +2216,114 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['patient', 'history'],
   data: function data() {
     return {
       isUpdate: false,
       reference: this.generateRef(),
-      weight: null,
-      note: null,
-      tagsATCD: [],
-      tagsEXCV: [],
-      tagsCAF: [],
+      weight: this.history.weight,
+      note: this.history.note,
+      tagsATCD: JSON.parse(this.history.ATCD),
+      tagsEXCV: JSON.parse(this.history.EXCV),
+      tagsCAF: JSON.parse(this.history.CAF),
       tag: '',
       tags: [],
       isLoading: false,
       message: {
         text: null,
         type: null
-      }
+      },
+      items: [{
+        name: 'Traumatisme',
+        symbole: '𝓩'
+      }, {
+        name: 'Fracture',
+        symbole: 'F̸'
+      }, {
+        name: 'Tissu',
+        symbole: 'T̸'
+      }, {
+        name: 'Grossesse',
+        symbole: 'G̅'
+      }, {
+        name: 'Grossesse extra urerine',
+        symbole: 'GEU'
+      }, {
+        name: 'Pression',
+        symbole: 'P̅'
+      }, {
+        name: 'Diabeter',
+        symbole: '(D)'
+      }, {
+        name: 'Douleur',
+        symbole: 'D̅'
+      }, {
+        name: 'Diarrhée',
+        symbole: 'D̲'
+      }, {
+        name: 'carrot',
+        symbole: 'D̲ C'
+      }, {
+        name: 'Histolo',
+        symbole: 'H̸'
+      }, {
+        name: 'Cytologie',
+        symbole: 'C̸'
+      }, {
+        name: 'Trouble psychique',
+        symbole: '𝒯 psy'
+      }, {
+        name: 'Insuffisance coronarienne',
+        symbole: 'I Cˣ'
+      }, {
+        name: 'Insuffisance respiratoire',
+        symbole: 'I Resp'
+      }, {
+        name: 'Insuffisance rerale',
+        symbole: 'I Rᴸ'
+      }, {
+        name: 'Insuffisance hépatique',
+        symbole: 'I Hep'
+      }, {
+        name: 'Hysterie',
+        symbole: 'H'
+      }, {
+        name: 'Splenomegalie',
+        symbole: 'SMG'
+      }, {
+        name: 'Hépatomégalie',
+        symbole: 'HMG'
+      }, {
+        name: 'Adénopathie',
+        symbole: 'ADP'
+      }, {
+        name: 'Adénopathie latero cervicale',
+        symbole: 'ADP+LC'
+      }, {
+        name: 'Ganglion',
+        symbole: 'gg'
+      }, {
+        name: 'Rein',
+        symbole: 'Rᶦ'
+      }, {
+        name: 'Néphrectomie',
+        symbole: 'Řᶦ'
+      }, {
+        name: 'Vesicle biliar',
+        symbole: 'VB'
+      }]
     };
   },
   methods: {
@@ -2181,23 +2351,22 @@ __webpack_require__.r(__webpack_exports__);
     setATCD: function setATCD(data) {
       this.tagsATCD = data;
     },
-    saveRecord: function saveRecord() {
+    updateRecord: function updateRecord() {
       var _this = this;
 
-      var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/apidocs';
+      var url = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '/apidocs/' + this.history.id;
 
       if (this.validateForm()) {
         this.isLoading = true;
-        axios.post(url, {
-          Reference: this.reference,
-          patient_id: this.patient.id,
+        axios.put(url, {
           weight: this.weight,
           ATCD: this.tagsATCD,
           EXCV: this.tagsEXCV,
-          CAF: this.tagsCAF
+          CAF: this.tagsCAF,
+          note: this.note
         }).then(function (response) {
           _this.isLoading = false;
-          console.log(response);
+          console.log(response.data.data);
           window.location.href = '/patients/show/' + response.data.data.patient_id;
         })["catch"](function (errors) {
           console.log(errors.response);
@@ -2383,10 +2552,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     placeholder: {
       type: String
+    },
+    selected: {
+      type: Array
     },
     items: {
       type: Array,
@@ -2400,7 +2574,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       isOpen: false,
       search: '',
-      tags: [],
+      tags: this.selected,
       arrowCounter: -1
     };
   },
@@ -2447,12 +2621,14 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     setResult: function setResult(result, index) {
-      if (!this.tags.includes(result)) {
-        this.$emit('tags', this.tags);
-        this.tags.push(result);
-        this.search = "";
-        this.$refs.search_input.focus();
-        this.isOpen = false;
+      if (!this.findDup(result.name)) {
+        if (!this.tags.includes(result)) {
+          this.$emit('tags', this.tags);
+          this.tags.push(result);
+          this.search = "";
+          this.$refs.search_input.focus();
+          this.isOpen = false;
+        }
       } else {
         this.search = "";
         this.isOpen = false;
@@ -2461,7 +2637,27 @@ __webpack_require__.r(__webpack_exports__);
     },
     removeTag: function removeTag(tag) {
       this.tags.splice(tag, 1);
+    },
+    findDup: function findDup(tagName) {
+      var found = false;
+
+      for (var i = 0; i < this.tags.length; i++) {
+        if (this.tags[i].name === tagName) {
+          found = true;
+          return found;
+        }
+      }
+
+      return found;
+    },
+    init: function init() {
+      if (this.tags === undefined) {
+        this.tags = [];
+      }
     }
+  },
+  mounted: function mounted() {
+    this.init();
   }
 });
 
@@ -2928,6 +3124,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['patient', 'back_url', 'medical_doc_url'],
   data: function data() {
@@ -2989,8 +3187,6 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _datatables_Datatable_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../datatables/Datatable.vue */ "./resources/js/components/datatables/Datatable.vue");
 /* harmony import */ var _datatables_Pagination_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../datatables/Pagination.vue */ "./resources/js/components/datatables/Pagination.vue");
-//
-//
 //
 //
 //
@@ -39386,13 +39582,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("quick-reply", {
                     attrs: {
-                      items: [
-                        { name: "banana", gender: "fruit" },
-                        { name: "potato", gender: "veigies" },
-                        { name: "watermelon", gender: "fruit" },
-                        { name: "carrot", gender: "vegies" }
-                      ],
-                      placeholder: "Test 1"
+                      items: _vm.items,
+                      placeholder: "Veuillez saisir les Antécédence"
                     },
                     on: { tags: _vm.setATCD }
                   })
@@ -39415,13 +39606,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("quick-reply", {
                     attrs: {
-                      items: [
-                        { name: "banana", gender: "fruit" },
-                        { name: "potato", gender: "veigies" },
-                        { name: "watermelon", gender: "fruit" },
-                        { name: "carrot", gender: "vegies" }
-                      ],
-                      placeholder: "Test 2"
+                      items: _vm.items,
+                      placeholder: "Veuillez saisir les EXCV"
                     },
                     on: { tags: _vm.setEXCV }
                   })
@@ -39444,13 +39630,8 @@ var render = function() {
                   _vm._v(" "),
                   _c("quick-reply", {
                     attrs: {
-                      items: [
-                        { name: "banana", gender: "fruit" },
-                        { name: "potato", gender: "veigies" },
-                        { name: "watermelon", gender: "fruit" },
-                        { name: "carrot", gender: "vegies" }
-                      ],
-                      placeholder: "Veuillez saisir les Antécédence"
+                      items: _vm.items,
+                      placeholder: "Veuillez saisir les CAF"
                     },
                     on: { tags: _vm.setCAF }
                   })
@@ -39624,9 +39805,7 @@ var render = function() {
             "form",
             { staticClass: "m-4 p-10 bg-white rounded shadow-xl z-10" },
             [
-              _c("div", { staticClass: "flex justify-between" }, [
-                _c("div", {}),
-                _vm._v(" "),
+              _c("div", { staticClass: "flex justify-between mb-4" }, [
                 _c("div", {}, [
                   _c("input", {
                     attrs: { type: "hidden", name: "", value: "" }
@@ -39658,7 +39837,7 @@ var render = function() {
                         "button",
                         {
                           staticClass:
-                            "focus:outline-none cursor-default rounded-full px-4 mr-2 bg-blue-600 text-white p-2 rounded  leading-none flex items-center",
+                            "focus:outline-none cursor-default rounded-full px-4 mr-2 bg-blue-600 text-white p-2 rounded rounded-l-none leading-none flex items-center",
                           attrs: { type: "button" }
                         },
                         [
@@ -39693,6 +39872,48 @@ var render = function() {
                         ]
                       )
                     : _vm._e()
+                ]),
+                _vm._v(" "),
+                _c("div", {}, [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "focus:outline-none",
+                      attrs: { href: "#", type: "button" },
+                      on: {
+                        click: function($event) {
+                          _vm.isUpdate = !_vm.isUpdate
+                        }
+                      }
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "fill-current text-doc_primary w-6",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20"
+                          }
+                        },
+                        [
+                          !_vm.isUpdate
+                            ? _c("path", {
+                                attrs: {
+                                  d:
+                                    "M17.561 2.439c-1.442-1.443-2.525-1.227-2.525-1.227L8.984 7.264 2.21 14.037 1.2 18.799l4.763-1.01 6.774-6.771 6.052-6.052c-.001 0 .216-1.083-1.228-2.527zM5.68 17.217l-1.624.35a3.71 3.71 0 00-.69-.932 3.742 3.742 0 00-.932-.691l.35-1.623.47-.469s.883.018 1.881 1.016c.997.996 1.016 1.881 1.016 1.881l-.471.468z"
+                                }
+                              })
+                            : _c("path", {
+                                attrs: {
+                                  d:
+                                    "M14.348 14.849a1.2 1.2 0 01-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 11-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 111.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 111.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 010 1.698z"
+                                }
+                              })
+                        ]
+                      )
+                    ]
+                  )
                 ])
               ]),
               _vm._v(" "),
@@ -39700,23 +39921,22 @@ var render = function() {
                 _c("div", { staticClass: "w-full mr-2" }, [
                   _vm._m(0),
                   _vm._v(" "),
-                  _c(
-                    "div",
-                    {
-                      staticClass:
-                        "bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
-                    },
-                    [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(_vm.history.weight) +
-                          "\n                        "
+                  !_vm.isUpdate
+                    ? _c(
+                        "div",
+                        {
+                          staticClass:
+                            "bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(_vm.history.weight) +
+                              "\n                        "
+                          )
+                        ]
                       )
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _vm.isUpdate
-                    ? _c("input", {
+                    : _c("input", {
                         directives: [
                           {
                             name: "model",
@@ -39742,7 +39962,6 @@ var render = function() {
                           }
                         }
                       })
-                    : _vm._e()
                 ])
               ]),
               _vm._v(" "),
@@ -39760,54 +39979,48 @@ var render = function() {
                         [_vm._v("ATCD:")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
-                        },
-                        [
-                          _c(
+                      !_vm.isUpdate
+                        ? _c(
                             "div",
-                            { staticClass: "flex" },
-                            _vm._l(JSON.parse(_vm.history.ATCD), function(
-                              tag,
-                              index
-                            ) {
-                              return _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(tag.name) +
-                                      "\n                            "
+                            {
+                              staticClass:
+                                "bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+                            },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "flex" },
+                                _vm._l(JSON.parse(_vm.history.ATCD), function(
+                                  tag,
+                                  index
+                                ) {
+                                  return _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(tag.name) +
+                                          "\n                            "
+                                      )
+                                    ]
                                   )
-                                ]
+                                }),
+                                0
                               )
-                            }),
-                            0
+                            ]
                           )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm.isUpdate
-                        ? _c("quick-reply", {
+                        : _c("quick-reply", {
                             attrs: {
-                              items: [
-                                { name: "banana", gender: "fruit" },
-                                { name: "potato", gender: "veigies" },
-                                { name: "watermelon", gender: "fruit" },
-                                { name: "carrot", gender: "vegies" }
-                              ],
-                              placeholder: "Test 1"
+                              items: _vm.items,
+                              placeholder: "Test 1",
+                              selected: _vm.tagsATCD
                             },
                             on: { tags: _vm.setATCD }
                           })
-                        : _vm._e()
                     ],
                     1
                   )
@@ -39827,54 +40040,48 @@ var render = function() {
                         [_vm._v("EXCV:")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
-                        },
-                        [
-                          _c(
+                      !_vm.isUpdate
+                        ? _c(
                             "div",
-                            { staticClass: "flex" },
-                            _vm._l(JSON.parse(_vm.history.EXCV), function(
-                              tag,
-                              index
-                            ) {
-                              return _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(tag.name) +
-                                      "\n                            "
+                            {
+                              staticClass:
+                                "bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+                            },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "flex" },
+                                _vm._l(JSON.parse(_vm.history.EXCV), function(
+                                  tag,
+                                  index
+                                ) {
+                                  return _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(tag.name) +
+                                          "\n                            "
+                                      )
+                                    ]
                                   )
-                                ]
+                                }),
+                                0
                               )
-                            }),
-                            0
+                            ]
                           )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm.isUpdate
-                        ? _c("quick-reply", {
+                        : _c("quick-reply", {
                             attrs: {
-                              items: [
-                                { name: "banana", gender: "fruit" },
-                                { name: "potato", gender: "veigies" },
-                                { name: "watermelon", gender: "fruit" },
-                                { name: "carrot", gender: "vegies" }
-                              ],
-                              placeholder: "Test 2"
+                              items: _vm.items,
+                              placeholder: "Test 2",
+                              selected: _vm.tagsEXCV
                             },
                             on: { tags: _vm.setEXCV }
                           })
-                        : _vm._e()
                     ],
                     1
                   )
@@ -39894,54 +40101,48 @@ var render = function() {
                         [_vm._v("CAF:")]
                       ),
                       _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass:
-                            "bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
-                        },
-                        [
-                          _c(
+                      !_vm.isUpdate
+                        ? _c(
                             "div",
-                            { staticClass: "flex" },
-                            _vm._l(JSON.parse(_vm.history.CAF), function(
-                              tag,
-                              index
-                            ) {
-                              return _c(
-                                "span",
-                                {
-                                  staticClass:
-                                    "flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
-                                },
-                                [
-                                  _vm._v(
-                                    "\n                                " +
-                                      _vm._s(tag.name) +
-                                      "\n                            "
+                            {
+                              staticClass:
+                                "bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+                            },
+                            [
+                              _c(
+                                "div",
+                                { staticClass: "flex" },
+                                _vm._l(JSON.parse(_vm.history.CAF), function(
+                                  tag,
+                                  index
+                                ) {
+                                  return _c(
+                                    "span",
+                                    {
+                                      staticClass:
+                                        "flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                " +
+                                          _vm._s(tag.name) +
+                                          "\n                            "
+                                      )
+                                    ]
                                   )
-                                ]
+                                }),
+                                0
                               )
-                            }),
-                            0
+                            ]
                           )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _vm.isUpdate
-                        ? _c("quick-reply", {
+                        : _c("quick-reply", {
                             attrs: {
-                              items: [
-                                { name: "banana", gender: "fruit" },
-                                { name: "potato", gender: "veigies" },
-                                { name: "watermelon", gender: "fruit" },
-                                { name: "carrot", gender: "vegies" }
-                              ],
-                              placeholder: "Veuillez saisir les Antécédence"
+                              items: _vm.items,
+                              placeholder: "Veuillez saisir les Antécédence",
+                              selected: _vm.tagsCAF
                             },
                             on: { tags: _vm.setCAF }
                           })
-                        : _vm._e()
                     ],
                     1
                   )
@@ -39956,75 +40157,92 @@ var render = function() {
                   [_vm._v("Note:")]
                 ),
                 _vm._v(" "),
-                _c("textarea", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.note,
-                      expression: "note"
-                    }
-                  ],
-                  staticClass:
-                    "focus:shadow-none focus:outline-none bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal",
-                  attrs: { name: "note", rows: "3" },
-                  domProps: { value: _vm.note },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
+                !_vm.isUpdate
+                  ? _c(
+                      "div",
+                      {
+                        staticClass:
+                          "focus:shadow-none focus:outline-none bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+                      },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.history.note) +
+                            "\n                    "
+                        )
+                      ]
+                    )
+                  : _c("textarea", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.note,
+                          expression: "note"
+                        }
+                      ],
+                      staticClass:
+                        "focus:shadow-none focus:outline-none bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal",
+                      attrs: { name: "note", rows: "3" },
+                      domProps: { value: _vm.note },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.note = $event.target.value
+                        }
                       }
-                      _vm.note = $event.target.value
-                    }
-                  }
-                })
+                    })
               ]),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "flex justify-end items-center mt-6" },
-                [
-                  _vm.isLoading
-                    ? _c("loader")
-                    : _c(
-                        "button",
-                        {
-                          staticClass:
-                            "bg-doc_primary hover:bg-gray-400 hover:text-doc_text text-white font-bold py-2 px-4 rounded inline-flex items-center",
-                          attrs: { type: "button" },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.saveRecord()
-                            }
-                          }
-                        },
-                        [
-                          _c(
-                            "svg",
+              _vm.isUpdate
+                ? _c(
+                    "div",
+                    { staticClass: "flex justify-end items-center mt-6" },
+                    [
+                      _vm.isLoading
+                        ? _c("loader")
+                        : _c(
+                            "button",
                             {
-                              staticClass: "fill-current w-4 h-4 mr-2",
-                              attrs: {
-                                xmlns: "http://www.w3.org/2000/svg",
-                                viewBox: "0 0 20 20"
+                              staticClass:
+                                "bg-doc_primary hover:bg-gray-400 hover:text-doc_text text-white font-bold py-2 px-4 rounded inline-flex items-center",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.updateRecord()
+                                }
                               }
                             },
                             [
-                              _c("path", {
-                                attrs: {
-                                  d:
-                                    "M15.173 2H4c-1.101 0-2 .9-2 2v12c0 1.1.899 2 2 2h12c1.101 0 2-.9 2-2V5.127L15.173 2zM14 8c0 .549-.45 1-1 1H7c-.55 0-1-.451-1-1V3h8v5zm-1-4h-2v4h2V4z"
-                                }
-                              })
+                              _c(
+                                "svg",
+                                {
+                                  staticClass: "fill-current w-4 h-4 mr-2",
+                                  attrs: {
+                                    xmlns: "http://www.w3.org/2000/svg",
+                                    viewBox: "0 0 20 20"
+                                  }
+                                },
+                                [
+                                  _c("path", {
+                                    attrs: {
+                                      d:
+                                        "M15.173 2H4c-1.101 0-2 .9-2 2v12c0 1.1.899 2 2 2h12c1.101 0 2-.9 2-2V5.127L15.173 2zM14 8c0 .549-.45 1-1 1H7c-.55 0-1-.451-1-1V3h8v5zm-1-4h-2v4h2V4z"
+                                    }
+                                  })
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("span", [_vm._v("Sauvegarder le record")])
                             ]
-                          ),
-                          _vm._v(" "),
-                          _c("span", [_vm._v("Sauvegarder le record")])
-                        ]
-                      )
-                ],
-                1
-              )
+                          )
+                    ],
+                    1
+                  )
+                : _vm._e()
             ]
           )
         ])
@@ -40351,7 +40569,7 @@ var render = function() {
           "div",
           {
             staticClass:
-              "bg-white rounded rounded-md p-6 border-t border-l border-r shadow-lg flex flex-col absolute w-full",
+              "bg-white rounded rounded-md py-6 sm:p-6 border-t border-l border-r shadow-lg flex flex-col absolute w-full",
             staticStyle: { bottom: "100%" }
           },
           _vm._l(_vm.results, function(result, i) {
@@ -40369,7 +40587,17 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("/" + _vm._s(result.name))]
+              [
+                _vm._v(_vm._s(result.name) + " "),
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "ml-2 bg-doc_primary rounded-full px-3 py-1 text-sm font-semibold text-white mr-2"
+                  },
+                  [_vm._v(_vm._s(result.symbole))]
+                )
+              ]
             )
           }),
           0
@@ -40380,26 +40608,25 @@ var render = function() {
       "div",
       {
         staticClass:
-          "bg-white focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"
+          "bg-white focus:shadow-outline border border-gray-300 rounded-lg py-2 sm:px-4 block w-full appearance-none leading-normal"
       },
       [
         _c(
           "div",
-          { staticClass: "flex" },
+          { staticClass: "inline-flex flex-col sm:flex-row w-full flex-wrap" },
           [
             _vm._l(_vm.tags, function(tag, index) {
               return _c(
                 "span",
                 {
                   staticClass:
-                    "flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2"
+                    "flex justify-between items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-2 mt-2 sm:mr-2"
                 },
                 [
-                  _vm._v(
-                    "\n                " +
-                      _vm._s(tag.name) +
-                      "\n                "
-                  ),
+                  _c("span", { staticClass: "whitespace-no-wrap" }, [
+                    _vm._v(_vm._s(tag.symbole))
+                  ]),
+                  _vm._v(" "),
                   _c(
                     "button",
                     {
@@ -41656,12 +41883,19 @@ var render = function() {
                 }
               },
               [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M17.561 2.439c-1.442-1.443-2.525-1.227-2.525-1.227L8.984 7.264 2.21 14.037 1.2 18.799l4.763-1.01 6.774-6.771 6.052-6.052c-.001 0 .216-1.083-1.228-2.527zM5.68 17.217l-1.624.35a3.71 3.71 0 00-.69-.932 3.742 3.742 0 00-.932-.691l.35-1.623.47-.469s.883.018 1.881 1.016c.997.996 1.016 1.881 1.016 1.881l-.471.468z"
-                  }
-                })
+                !_vm.isUpdateActive
+                  ? _c("path", {
+                      attrs: {
+                        d:
+                          "M17.561 2.439c-1.442-1.443-2.525-1.227-2.525-1.227L8.984 7.264 2.21 14.037 1.2 18.799l4.763-1.01 6.774-6.771 6.052-6.052c-.001 0 .216-1.083-1.228-2.527zM5.68 17.217l-1.624.35a3.71 3.71 0 00-.69-.932 3.742 3.742 0 00-.932-.691l.35-1.623.47-.469s.883.018 1.881 1.016c.997.996 1.016 1.881 1.016 1.881l-.471.468z"
+                      }
+                    })
+                  : _c("path", {
+                      attrs: {
+                        d:
+                          "M14.348 14.849a1.2 1.2 0 01-1.697 0L10 11.819l-2.651 3.029a1.2 1.2 0 11-1.697-1.697l2.758-3.15-2.759-3.152a1.2 1.2 0 111.697-1.697L10 8.183l2.651-3.031a1.2 1.2 0 111.697 1.697l-2.758 3.152 2.758 3.15a1.2 1.2 0 010 1.698z"
+                      }
+                    })
               ]
             )
           ]
@@ -42000,7 +42234,7 @@ var render = function() {
             attrs: {
               type: "text",
               placeholder: "Chercher un patient",
-              disabled: _vm.patients
+              disabled: this.patients.length < 0 ? true : false
             },
             domProps: { value: _vm.tableData.search },
             on: {
@@ -42033,7 +42267,7 @@ var render = function() {
                   ],
                   staticClass:
                     "text-sm block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 rounded",
-                  attrs: { disabled: _vm.patients },
+                  attrs: { disabled: _vm.patients.length < 0 ? true : false },
                   on: {
                     change: [
                       function($event) {

@@ -73,7 +73,7 @@
         <div class="text-black font-medium text-sm flex justify-center mt-4">
             <a href="#">Contact</a>
             <a href="#" class="ml-6">Feedback</a>
-            <a href="#" class="ml-6">Join our Slack</a>
+            <!-- <a href="#" class="ml-6">Join our Slack</a> -->
             <a href="#" class="ml-6">Terms</a>
         </div>
     </footer>

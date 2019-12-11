@@ -47,7 +47,7 @@ class MedicalHistoryController extends Controller
         $doc->ATCD= json_encode($request->input('ATCD'));
         $doc->EXCV= json_encode($request->input('EXCV'));
         $doc->CAF= json_encode($request->input('CAF'));
-
+        $doc->note= $request->input('note');
         if($doc->save()) {
           return ['data' => $doc];
         }else {
@@ -67,9 +67,19 @@ class MedicalHistoryController extends Controller
         //
     }
 
-    public function update(Request $request, MedicalHistory $medicalHistory)
+    public function update(Request $request, $id)
     {
-        //
+      $history = MedicalHistory::findOrFail($id);
+      $history->weight= $request->input('weight');
+      $history->ATCD= json_encode($request->input('ATCD'));
+      $history->EXCV= json_encode($request->input('EXCV'));
+      $history->CAF= json_encode($request->input('CAF'));
+      $history->note= $request->input('note');
+      if($history->save()) {
+        return ['data' => $history];
+      }else {
+        return ['errors' => $history, 'message'=>'Quelque chose s\'est mal passé, vérifiez à nouveau les données fournies.'];
+      }
     }
 
     public function destroy(MedicalHistory $medicalHistory)

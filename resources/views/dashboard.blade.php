@@ -58,7 +58,7 @@
                       <a href="#">
                         <div>
                           <div class="text-grey-darker mb-2">
-                            <span class="text-5xl">0</span>
+                            <span class="text-5xl">{{$histories}}</span>
                           </div>
                           <div class="text-sm uppercase text-grey tracking-wide">
                             Antécédents
@@ -100,7 +100,14 @@
                         <div class="flex w-3/5 md:w/12">
                           <div class="w-1/2 px-4">
                             <div class="text-right">
-                              84Kg
+                              <?php
+                                $history = $patient->histories()->get()->sortByDesc('created_at')->first();
+                              ?>
+                              @if(is_null($history))
+                                <p>N/a</p>
+                              @else
+                                {{$history->weight}}Kg
+                              @endif
                             </div>
                           </div>
                           <div class="w-1/2 px-4">

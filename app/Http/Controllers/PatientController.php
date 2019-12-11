@@ -19,7 +19,7 @@ class PatientController extends Controller
     }
     public function patientshow($id) {
       $patient = Patient::findOrFail($id);
-      $docs = $patient->histories()->get();
+      $docs = $patient->histories()->orderBy('created_at', 'DESC')->get();
       return view('patients.patient', compact('patient', 'docs'));
     }
 
@@ -89,6 +89,8 @@ class PatientController extends Controller
       $patient->sentBy = $request->input('sentBy');
       if($patient->save()) {
         return ['data' => $patient];
+      }else {
+        return ['errors' => $patient, 'message'=>'Quelque chose s\'est mal passé, vérifiez à nouveau les données fournies.'];
       }
     }
 

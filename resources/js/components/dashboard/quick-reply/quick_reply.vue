@@ -1,13 +1,15 @@
 <template>
 <div class="relative">
-    <div v-if="isOpen" style="bottom:100%" class="bg-white rounded rounded-md p-6 border-t border-l border-r shadow-lg flex flex-col absolute w-full">
-        <button type="button" @click="setResult(result, i)" v-for="(result, i) in results" :key="i" href="#" class="hover:bg-gray-300 px-4 rounded cursor-pointer text-left" :class="{ 'bg-blue-500': i === arrowCounter }">/{{result.name}}</button>
+    <div v-if="isOpen" style="bottom:100%" class="bg-white rounded rounded-md py-6 sm:p-6 border-t border-l border-r shadow-lg flex flex-col absolute w-full">
+        <button type="button" @click="setResult(result, i)" v-for="(result, i) in results" :key="i" href="#" class="hover:bg-gray-300 px-4 rounded cursor-pointer text-left" :class="{ 'bg-blue-500': i === arrowCounter }">{{result.name}} <span
+              class="ml-2 bg-doc_primary rounded-full px-3 py-1 text-sm font-semibold text-white mr-2">{{result.symbole}}</span></button>
     </div>
 
-    <div class="bg-white focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal">
-        <div class="flex">
-            <span v-for="tag, index in tags" class="flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                {{tag.name}}
+    <div class="bg-white focus:shadow-outline border border-gray-300 rounded-lg py-2 sm:px-4 block w-full appearance-none leading-normal">
+        <!-- <div class="flex flex-col flex-wrap sm:flex-row"> -->
+        <div class="inline-flex flex-col sm:flex-row w-full flex-wrap">
+            <span v-for="tag, index in tags" class="flex justify-between items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mx-2 mt-2 sm:mr-2">
+                <span class="whitespace-no-wrap">{{tag.symbole}}</span>
                 <button @click=" removeTag(index)" type="button" name="button" class="focus:outline-none">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="w-4">
                         <path
@@ -28,6 +30,9 @@ export default {
         placeholder: {
             type: String,
         },
+        selected: {
+            type: Array,
+        },
         items: {
             type: Array,
             required: false,
@@ -38,7 +43,7 @@ export default {
         return {
             isOpen: false,
             search: '',
-            tags: [],
+            tags: this.selected,
             arrowCounter: -1,
         }
     },
@@ -82,12 +87,14 @@ export default {
             this.results = this.items.filter(item => item.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1);
         },
         setResult(result, index) {
-            if (!this.tags.includes(result)) {
-                this.$emit('tags', this.tags);
-                this.tags.push(result);
-                this.search = "";
-                this.$refs.search_input.focus();
-                this.isOpen = false;
+            if (!this.findDup(result.name)) {
+                if (!this.tags.includes(result)) {
+                    this.$emit('tags', this.tags);
+                    this.tags.push(result);
+                    this.search = "";
+                    this.$refs.search_input.focus();
+                    this.isOpen = false;
+                }
             } else {
                 this.search = "";
                 this.isOpen = false;
@@ -96,7 +103,25 @@ export default {
         },
         removeTag(tag) {
             this.tags.splice(tag, 1);
+        },
+        findDup(tagName) {
+            var found = false;
+            for (var i = 0; i < this.tags.length; i++) {
+                if (this.tags[i].name === tagName) {
+                    found = true;
+                    return found;
+                }
+            }
+            return found;
+        },
+        init() {
+            if (this.tags === undefined) {
+                this.tags = [];
+            }
         }
+    },
+    mounted() {
+        this.init()
     }
 }
 </script>

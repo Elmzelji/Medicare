@@ -39,7 +39,6 @@
                 @endif
             @else
                 <a href="{{route('patients_page')}}" class="hidden sm:inline font-medium text-sm">Patients</a>
-                <a href="#" class="hidden sm:inline ml-4 font-medium text-sm">Ordonnances</a>
                 <a href="{{route('dashboard')}}" class="ml-4">
                     <span class="text-pack_text text-sm font-medium pr-4">Dashboard</span>
                 </a>
