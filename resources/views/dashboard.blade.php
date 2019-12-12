@@ -58,7 +58,7 @@
                       <a href="#">
                         <div class="border-r">
                           <div class="text-grey-darker mb-2">
-                              <span class="text-5xl">0</span>
+                              <span class="text-5xl">{{$histories*App\settings::first()->cabinet_price}}DH</span>
                           </div>
                           <div class="text-sm uppercase text-grey tracking-wide">
                             Revenu

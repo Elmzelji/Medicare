@@ -1,15 +1,5 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,6 +9,13 @@ Auth::routes();
 
 Route::resource('apipatients', 'PatientController');
 Route::resource('apidocs', 'MedicalHistoryController');
+Route::resource('settings', 'SettingsController');
+
+Route::post('settings/heading/{id}', 'SettingsController@updateHeading')->name('update_settings');
+Route::post('settings/testimonial/{id}', 'SettingsController@updateTestimonial')->name('update_testimonial_settings');
+Route::post('settings/about/{id}', 'SettingsController@updateAbout')->name('update_about_settings');
+Route::post('settings/auto/{id}', 'SettingsController@updateAuto')->name('update_auto_settings');
+Route::post('settings/cabinet/{id}', 'SettingsController@updateCabinet')->name('update_cabinet_settings');
 
 
 // Patients Routes

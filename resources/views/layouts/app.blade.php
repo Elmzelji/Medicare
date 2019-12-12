@@ -38,11 +38,13 @@
 
                 @endif
             @else
-                <a href="{{route('patients_page')}}" class="hidden sm:inline font-medium text-sm">Patients</a>
                 <a href="{{route('dashboard')}}" class="ml-4">
                     <span class="text-pack_text text-sm font-medium pr-4">Dashboard</span>
                 </a>
-
+                <a href="{{route('patients_page')}}" class="hidden sm:inline font-medium text-sm pr-4">Patients</a>
+                <a href="{{url('/settings')}}">
+                    <span class="text-pack_text text-sm font-medium pr-4">Paramètres</span>
+                </a>
                 <a href="{{ route('logout') }}"
                            class="no-underline hover:underline text-pack_text text-sm p-3"
                            onclick="event.preventDefault();

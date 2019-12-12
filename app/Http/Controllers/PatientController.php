@@ -101,6 +101,7 @@ class PatientController extends Controller
     {
         $patient = Patient::findOrFail($id);
         if($patient->delete()){
+          $patient->histories()->delete();
           return ['data' => 'Patient deleted'];
         }else {
           return ['errors' => '', 'message'=>'Quelque chose s\'est mal passé, vérifiez à nouveau les données fournies.'];

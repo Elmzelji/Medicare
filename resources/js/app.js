@@ -25,6 +25,7 @@ Vue.component('patient-infos', require('./components/patients/patientComponent.v
 Vue.component('document-create', require('./components/MH/create.vue').default);
 Vue.component('document-show', require('./components/MH/show.vue').default);
 
+Vue.component('accord', require('./components/settings/accord.vue').default);
 
 
 const app = new Vue({
