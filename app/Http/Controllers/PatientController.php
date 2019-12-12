@@ -87,6 +87,9 @@ class PatientController extends Controller
       $patient->addresse = $request->input('addresse');
       $patient->phoneNumber = $request->input('phoneNumber');
       $patient->sentBy = $request->input('sentBy');
+      if($request->input('gender') == "homme" || $request->input('gender') == "femelle")
+        $patient->gender = $request->input('gender');
+
       if($patient->save()) {
         return ['data' => $patient];
       }else {

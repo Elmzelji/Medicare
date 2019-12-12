@@ -1,5 +1,6 @@
 <template>
 <div class="text-center py-8 leading-relaxed">
+
     <div class="flex justify-between">
         <div class="flex items-center">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current text-doc_primary w-6">
@@ -67,6 +68,22 @@
                         <input v-else="isUpdateActive" class="bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal" type="date" ref="birthDate"
                           :value="patient_data.birthDate">
                     </div>
+                    <div class="mt-2" v-if="isUpdateActive">
+                        <h2 class="font-semibold uppercase text-gray-700 text-sm">Sexe:<span class="text-red-700">*</span></h2>
+
+                        <div class="inline-block relative w-64">
+
+                            <select class="block appearance-none w-full bg-white border border-gray-400 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" v-model="gender" required>
+                                <option disabled value="">Veuillez choisir le sexe</option>
+                                <option value="homme">homme</option>
+                                <option value="femelle">femelle</option>
+                            </select>
+                            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                                <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                    <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="mt-4 sm:mt-0 sm:w-1/3 sm:mx-6">
                     <h1 class="font-medium text-sm text-gray-600 uppercase">Contact</h1>
@@ -94,6 +111,7 @@
                 </div>
             </div>
             <div v-if="isUpdateActive" class="mt-4 sm:mt-0 flex justify-end items-center">
+                <button @click="showModal = true" class="text-sm text-gray-700 mr-4 focus:outline-none  font-medium hover:underline" type="button" name="removePatient">Remove {{patient_data.lastName}}</button>
                 <loader v-if="isLoading"></loader>
                 <button v-else="!isLoading" @click.prevent="updatePatient()" type="button" class="bg-doc_primary hover:bg-gray-400 hover:text-doc_text text-white font-bold py-2 px-4 rounded inline-flex items-center">
 
@@ -107,19 +125,23 @@
             </div>
         </form>
     </div>
+    <remove-record v-if="showModal" @close="showModal = false" :patient_id="patient_data.id" :remove_url="remove_url" :redirect_path="redirect_path"
+      message="Vous êtes sûr de vouloir retirer ce patient ? En faisant cela, vous perdrez toutes les données sauvegardées et vous ne pourrez pas les réutiliser."></remove-record>
 </div>
 </template>
 
 <script>
 export default {
-    props: ['patient', 'back_url', 'medical_doc_url'],
+    props: ['patient', 'back_url', 'medical_doc_url', 'remove_url', 'redirect_path'],
 
     data: function() {
         return {
+            showModal: false,
             patient_data: JSON.parse(this.patient),
             age: 0,
             isUpdateActive: false,
             isLoading: false,
+            gender: JSON.parse(this.patient).gender,
         }
     },
     methods: {
@@ -133,6 +155,7 @@ export default {
                     phoneNumber: this.$refs.phoneNumber.value,
                     addresse: this.$refs.addresse.value,
                     sentBy: this.$refs.sentBy.value,
+                    gender: this.gender,
                 })
                 .then(response => {
                     this.isLoading = false;

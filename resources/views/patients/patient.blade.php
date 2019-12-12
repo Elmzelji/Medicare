@@ -3,7 +3,7 @@
 @section('content')
 <div class="sm:rounded mb-6">
   <div class="border-b sm:w-3/4 mx-auto">
-    <patient-infos patient="{{$patient}}" medical_doc_url="{{route('create_document_page', $patient->id)}}" back_url="{{route('patients_page')}}">
+    <patient-infos patient="{{$patient}}" medical_doc_url="{{route('create_document_page', $patient->id)}}" back_url="{{route('patients_page')}}" remove_url="{{route('apipatients.destroy', $patient->id)}}" redirect_path="{{route('patients_page')}}">
       @csrf
     </patient-infos>
   </div>

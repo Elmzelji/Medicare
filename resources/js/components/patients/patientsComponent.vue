@@ -19,11 +19,12 @@
             </a>
         </div>
         <div class="flex mt-4 sm:mt-0">
-            <input class="py-2 px-4 pr-8" type="text" v-model="tableData.search" placeholder="Chercher un patient" @input="getPatients()" :disabled="this.patients.length < 0 ? true : false">
+            <input class="py-2 px-4 pr-8" type="text" v-model="tableData.search" placeholder="Chercher un patient" @input="getPatients()" :disabled="patients.length > 0 ? 'disabled' : ''">
 
             <div class="ml-4">
                 <div class="flex items-center">
-                    <select class="text-sm block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 rounded" v-model="tableData.length" @change="getPatients()" :disabled="patients.length < 0 ? true : false">
+                    <select class="text-sm block appearance-none w-full bg-grey-lighter border border-grey-lighter text-grey-darker py-3 px-4 rounded" v-model="tableData.length" @change="getPatients()"
+                      :disabled="patients.length > 0 ? 'disabled' : ''">
                         <option v-for="(records, index) in perPage" :key="index" :value="records">
                             {{records}} / page
                         </option>
@@ -32,12 +33,11 @@
             </div>
         </div>
     </div>
-
-    <div class="mt-12 text-center" :class="patients?'hidden':''">
+    <div class="mt-12 text-center" :class="patients.length > 0 ? 'hidden' : ''">
         <p class="text-lg">Sorry there is no patient to show ! try to add some</p>
     </div>
 
-    <section :class="patients?'':'hidden'">
+    <section :class="patients.length > 0 ? '':'hidden'">
         <datatable class="overflow-x-scroll sm:overflow-hidden mt-6 bg-white" :columns="columns" :sortKey="sortKey" :sortOrders="sortOrders" @sort="sortBy">
             <tbody>
                 <tr v-for="patient in patients" :key="patient.id">
@@ -69,7 +69,7 @@
         </datatable>
     </section>
 
-    <section :class="patients?'':'hidden'">
+    <section :class="patients.length > 0 ? '' : 'hidden'">
         <pagination :pagination="pagination" @prev="getPatients(pagination.prevPageUrl)" @next="getPatients(pagination.nextPageUrl)">
         </pagination>
     </section>

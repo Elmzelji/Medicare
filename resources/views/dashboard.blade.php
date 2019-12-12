@@ -34,10 +34,22 @@
                       <a href="{{route('patients_page')}}">
                         <div class="border-r">
                           <div class="text-grey-darker mb-2">
-                            <span class="text-5xl">{{$patients_year}}</span>
+                            <span class="text-5xl">{{ $patients_year }}</span>
                           </div>
                           <div class="text-sm uppercase text-grey tracking-wide">
                             Patient
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                    <div class="w-1/3 text-center py-8">
+                      <a href="#">
+                        <div>
+                          <div class="text-grey-darker mb-2">
+                            <span class="text-5xl">{{ $histories }}</span>
+                          </div>
+                          <div class="text-sm uppercase text-grey tracking-wide">
+                            Antécédents
                           </div>
                         </div>
                       </a>
@@ -49,19 +61,7 @@
                               <span class="text-5xl">0</span>
                           </div>
                           <div class="text-sm uppercase text-grey tracking-wide">
-                            Ordonnances
-                          </div>
-                        </div>
-                      </a>
-                    </div>
-                    <div class="w-1/3 text-center py-8">
-                      <a href="#">
-                        <div>
-                          <div class="text-grey-darker mb-2">
-                            <span class="text-5xl">{{$histories}}</span>
-                          </div>
-                          <div class="text-sm uppercase text-grey tracking-wide">
-                            Antécédents
+                            Revenu
                           </div>
                         </div>
                       </a>
@@ -69,7 +69,7 @@
                   </div>
                 </div>
                 <div class="flex flex-wrap -mx-4">
-                  <div class="w-full mb-6 lg:mb-0 lg:w-1/2 px-4 flex flex-col">
+                  <div class="w-full mb-6 lg:mb-0  px-4 flex flex-col">
                     <div class="flex-grow flex flex-col bg-white border-t border-b sm:rounded sm:border shadow overflow-hidden">
                       <div class="border-b">
                         <div class="flex justify-between px-6 -mb-px">
@@ -95,7 +95,10 @@
                         </div>
                         <div class="hidden md:flex lg:hidden xl:flex w-1/4 px-4 items-center">
                           {{$patient->lastName}}
-                          <div class="bg-pink-600 h-2 w-2 rounded-full ml-2"></div>
+
+
+                          <gender :birth="{{$patient->birthDate}}" type="{{$patient->gender}}"></gender>
+
                         </div>
                         <div class="flex w-3/5 md:w/12">
                           <div class="w-1/2 px-4">
@@ -144,7 +147,7 @@
 
                     </div>
                   </div>
-                  <div class="w-full lg:w-1/2 px-4">
+                  <!-- <div class="w-full lg:w-1/2 px-4">
                     <div class="bg-white border-t border-b sm:rounded sm:border shadow">
                       <div class="border-b">
                         <div class="flex justify-between px-6 -mb-px">
@@ -163,7 +166,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </div>
             </div>
 

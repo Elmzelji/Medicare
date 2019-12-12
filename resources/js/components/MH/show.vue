@@ -1,6 +1,7 @@
 <template>
 <div class="py-8 leading-relaxed mx-auto">
     <alert></alert>
+
     <div class="">
         <div class="flex items-start">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" class="fill-current text-doc_primary w-6">
@@ -108,7 +109,10 @@
                       class="focus:shadow-none focus:outline-none bg-white focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal"></textarea>
                 </div>
                 <div v-if="isUpdate" class="flex justify-end items-center mt-6">
+
+                    <button @click="showModal = true" class="text-sm text-gray-700 mr-4 focus:outline-none  font-medium hover:underline" type="button" name="removePatient">Remove {{patient.lastName}} Record</button>
                     <loader v-if="isLoading"></loader>
+
                     <button v-else="!isLoading" @click.prevent="updateRecord()" type="button" class="bg-doc_primary hover:bg-gray-400 hover:text-doc_text text-white font-bold py-2 px-4 rounded inline-flex items-center">
 
 
@@ -121,14 +125,18 @@
             </form>
         </div>
     </section>
+    <remove-record v-if="showModal" @close="showModal = false" :patient_id="patient.id" :remove_url="remove_url" :redirect_path="redirect_path"
+      message="Vous êtes sûr de vouloir retirer ce antécédents ? En faisant cela, vous perdrez toutes les données sauvegardées et vous ne pourrez pas les réutiliser."></remove-record>
+
 </div>
 </template>
 
 <script>
 export default {
-    props: ['patient', 'history'],
+    props: ['patient', 'history', 'remove_url', 'redirect_path'],
     data: function() {
         return {
+            showModal: false,
             isUpdate: false,
             reference: this.generateRef(),
             weight: this.history.weight,
