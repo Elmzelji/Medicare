@@ -67,15 +67,19 @@ class SettingsController extends Controller
     }
   }
 
-  public function updateAuto(Request $request, $id) {
+  public function updateAuto(Request $request, $id, $type) {
     $settings = Settings::findOrFail($id);
-    $settings->title = $request->input('title');
-    $settings->title_heading = $request->input('title_heading');
-    $settings->subtitle_heading = $request->input('subtitle_heading');
-    $settings->cta_text = $request->input('cta_text');
-    $settings->cta_link = $request->input('cta_link');
+    if($type == "ATCD"){
+      $settings->ATCD = json_encode($request->get("data"));
+    }
+    if($type == "EXCV"){
+      $settings->EXCV = json_encode($request->get("data"));
+    }
+    if($type == "CAF"){
+      $settings->CAF = json_encode($request->get("data"));
+    }
     if($settings->save()) {
-      return redirect()->route('settings.index');
+      return ['data' => $type];
 
     }else {
       return ['errors' => $settings, 'message'=>'Quelque chose s\'est mal passé, vérifiez à nouveau les données fournies.'];

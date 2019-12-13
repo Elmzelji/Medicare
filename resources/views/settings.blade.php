@@ -176,7 +176,6 @@
         </template>
     </accord>
 
-    <accord heading="Réglage auto-complet"></accord>
     <accord heading="Réglage cabinet">
       <template v-slot:content>
         <form class="" action="{{route('update_cabinet_settings', '1')}}" method="post">
@@ -207,6 +206,33 @@
         </form>
       </template>
     </accord>
+
+
+    <accord heading="Réglage ATCD">
+      <template v-slot:content>
+          <div class="">
+            <input-symbole :symbols_items="{{$settings->ATCD}}" update_route="{{route('update_AUTO', ['1', 'ATCD'])}}"></input-symbole>
+          </div>
+      </template>
+    </accord>
+
+    <accord heading="Réglage EXCV">
+      <template v-slot:content>
+          <div class="">
+            <input-symbole :symbols_items="{{$settings->EXCV}}" update_route="{{route('update_AUTO', ['1', 'EXCV'])}}"></input-symbole>
+          </div>
+      </template>
+    </accord>
+
+    <accord heading="Réglage CAF">
+      <template v-slot:content>
+          <div class="">
+            <input-symbole :symbols_items="{{$settings->CAF}}" update_route="{{route('update_AUTO', ['1', 'CAF'])}}"></input-symbole>
+          </div>
+      </template>
+    </accord>
+
+
 
   </div>
 

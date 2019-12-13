@@ -38,6 +38,10 @@ class CreateSettingsTable extends Migration
             $table->string('about_heading_right')->nullable();
             $table->text('about_text_right')->nullable();
 
+            $table->json('ATCD')->nullable();
+            $table->json('EXCV')->nullable();
+            $table->json('CAF')->nullable();
+
             $table->integer('cabinet_price')->nullable();
 
 

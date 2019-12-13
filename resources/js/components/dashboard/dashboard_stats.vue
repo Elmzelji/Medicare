@@ -8,8 +8,8 @@
     <div class="flex-shrink flex items-center justify-between w-32">
         <select v-model="selected" id="states" class="block appearance-none w-full bg-white border border-grey-light px-4 py-2 pr-8 rounded">
             <option :value="patients" selected="selected">Patient</option>
-            <option :value="prescriptions">Ordonnances</option>
             <option :value="atcd">Antécédents</option>
+            <option :value="revenue">Revenue</option>
         </select>
     </div>
 </div>
@@ -21,7 +21,7 @@
 
 <script type="text/javascript">
 export default {
-    props: ['patients', 'prescriptions', 'atcd'],
+    props: ['patients', 'revenue', 'atcd'],
     data() {
         return {
             selected: this.patients

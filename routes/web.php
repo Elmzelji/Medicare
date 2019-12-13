@@ -1,9 +1,7 @@
 <?php
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'publicController@index')->name('frontpage');
 
 Auth::routes();
 
@@ -14,8 +12,13 @@ Route::resource('settings', 'SettingsController');
 Route::post('settings/heading/{id}', 'SettingsController@updateHeading')->name('update_settings');
 Route::post('settings/testimonial/{id}', 'SettingsController@updateTestimonial')->name('update_testimonial_settings');
 Route::post('settings/about/{id}', 'SettingsController@updateAbout')->name('update_about_settings');
-Route::post('settings/auto/{id}', 'SettingsController@updateAuto')->name('update_auto_settings');
+
+
+Route::post('settings/auto/{id}/{type}', 'SettingsController@updateAuto')->name('update_AUTO');
+
+
 Route::post('settings/cabinet/{id}', 'SettingsController@updateCabinet')->name('update_cabinet_settings');
+
 
 
 // Patients Routes

@@ -26,7 +26,7 @@
                     </div>
                   </div>
 
-                  <dashboard-stats patients="{{$patients_year}}" prescriptions="0" atcd="0">
+                  <dashboard-stats patients="{{$patients_year}}" revenue="{{$histories*App\settings::first()->cabinet_price}}DH" atcd="{{ $histories }}">
                   </dashboard-stats>
 
                   <div class="hidden lg:flex">

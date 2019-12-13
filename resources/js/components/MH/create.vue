@@ -42,17 +42,17 @@
 
                 <div class="mt-6">
                     <h2 class="font-semibold uppercase text-gray-700 text-sm">ATCD:</h2>
-                    <quick-reply :items="items" placeholder="Veuillez saisir les Antécédence" @tags="setATCD"></quick-reply>
+                    <quick-reply :items="itemsATCD" placeholder="Veuillez saisir les Antécédence" @tags="setATCD"></quick-reply>
                 </div>
 
                 <div class="mt-6">
                     <h2 class="font-semibold uppercase text-gray-700 text-sm">EXCV:</h2>
-                    <quick-reply :items="items" placeholder="Veuillez saisir les EXCV" @tags="setEXCV"></quick-reply>
+                    <quick-reply :items="itemsEXCV" placeholder="Veuillez saisir les EXCV" @tags="setEXCV"></quick-reply>
                 </div>
 
                 <div class="mt-6">
                     <h2 class="font-semibold uppercase text-gray-700 text-sm">CAF:</h2>
-                    <quick-reply :items="items" placeholder="Veuillez saisir les CAF" @tags="setCAF">
+                    <quick-reply :items="itemsCAF" placeholder="Veuillez saisir les CAF" @tags="setCAF">
                     </quick-reply>
                 </div>
 
@@ -80,116 +80,13 @@
 
 <script>
 export default {
-    props: ['patient', 'count_docs'],
+    props: ['patient', 'count_docs', 'settings'],
     data: function() {
         return {
             reference: this.generateRef(),
-            items: [{
-                    name: 'Traumatisme',
-                    symbole: '𝓩'
-                },
-                {
-                    name: 'Fracture',
-                    symbole: 'F̸'
-                },
-                {
-                    name: 'Tissu',
-                    symbole: 'T̸'
-                },
-                {
-                    name: 'Grossesse',
-                    symbole: 'G̅'
-                },
-                {
-                    name: 'Grossesse extra urerine',
-                    symbole: 'GEU'
-                },
-                {
-                    name: 'Pression',
-                    symbole: 'P̅'
-                },
-                {
-                    name: 'Diabeter',
-                    symbole: '(D)'
-                },
-                {
-                    name: 'Douleur',
-                    symbole: 'D̅'
-                },
-                {
-                    name: 'Diarrhée',
-                    symbole: 'D̲'
-                },
-                {
-                    name: 'carrot',
-                    symbole: 'D̲ C'
-                },
-                {
-                    name: 'Histolo',
-                    symbole: 'H̸'
-                },
-                {
-                    name: 'Cytologie',
-                    symbole: 'C̸'
-                },
-                {
-                    name: 'Trouble psychique',
-                    symbole: '𝒯 psy'
-                },
-                {
-                    name: 'Insuffisance coronarienne',
-                    symbole: 'I Cˣ'
-                },
-                {
-                    name: 'Insuffisance respiratoire',
-                    symbole: 'I Resp'
-                },
-                {
-                    name: 'Insuffisance rerale',
-                    symbole: 'I Rᴸ'
-                },
-                {
-                    name: 'Insuffisance hépatique',
-                    symbole: 'I Hep'
-                },
-                {
-                    name: 'Hysterie',
-                    symbole: 'H'
-                },
-                {
-                    name: 'Splenomegalie',
-                    symbole: 'SMG'
-                },
-                {
-                    name: 'Hépatomégalie',
-                    symbole: 'HMG'
-                },
-                {
-                    name: 'Adénopathie',
-                    symbole: 'ADP'
-                },
-                {
-                    name: 'Adénopathie latero cervicale',
-                    symbole: 'ADP+LC'
-                },
-                {
-                    name: 'Ganglion',
-                    symbole: 'gg'
-                },
-                {
-                    name: 'Rein',
-                    symbole: 'Rᶦ'
-                },
-                {
-                    name: 'Néphrectomie',
-                    symbole: 'Řᶦ'
-                },
-                {
-                    name: 'Vesicle biliar',
-                    symbole: 'VB'
-                }
-
-            ],
+            itemsATCD: JSON.parse(this.settings.ATCD),
+            itemsEXCV: JSON.parse(this.settings.EXCV),
+            itemsCAF: JSON.parse(this.settings.CAF),
             weight: null,
             note: null,
             tagsATCD: [],
