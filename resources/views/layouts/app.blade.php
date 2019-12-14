@@ -1,3 +1,5 @@
+<?php $settings = App\Settings::all()->first(); ?>
+
 <!doctype html>
 <html lang="{{ app()->getLocale() }}">
 <head>
@@ -7,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Dr Ibrahim Amzil') }}</title>
+    <title>{{ config('app.name', $settings->title) }} - Backoffice</title>
 
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
@@ -15,48 +17,27 @@
     <link href="https://fonts.googleapis.com/css?family=Muli:400,500,700&display=swap" rel="stylesheet">
 
     <style type="text/css">
-        @media (min-width:641px) {
+        /* @media (min-width:641px) {
             #landing {
                 background-image: url('{{URL('/images/BackgroundDecor.png')}}') !important;
             }
-        }
+        } */
     </style>
 </head>
 <body id="landing" class="h-screen font-pack text-pack_text antialiased leading-none px-8 sm:px-24 pt-6 bg-cover" style="background-image: url({{URL('/images/BackgroundDecor.png')}});">
 
-    <header class="flex justify-between items-center">
-        <a href="{{URL('/')}}">
-            <img src="{{URL('/images/logo.png')}}" class="w-40">
-        </a>
-        <div class="flex items-center">
-            @guest
-                <div class="hidden sm:flex mr-4">
-                    <a href="{{route('patients_page')}}" class="font-medium text-sm">Patients</a>
-                    <a href="#" class="ml-4 font-medium text-sm">Ordonnances</a>
-                </div>
-                @if (Route::has('register'))
-
-                @endif
-            @else
-                <a href="{{route('dashboard')}}" class="ml-4">
-                    <span class="text-pack_text text-sm font-medium pr-4">Dashboard</span>
-                </a>
-                <a href="{{route('patients_page')}}" class="hidden sm:inline font-medium text-sm pr-4">Patients</a>
-                <a href="{{url('/settings')}}">
-                    <span class="text-pack_text text-sm font-medium pr-4">Paramètres</span>
-                </a>
-                <a href="{{ route('logout') }}"
-                           class="no-underline hover:underline text-pack_text text-sm p-3"
-                           onclick="event.preventDefault();
-                                document.getElementById('logout-form').submit();">{{ __('Logout') }}</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
-                    {{ csrf_field() }}
-                </form>
-            @endguest
-        </div>
-    </header>
 
     <div id="app">
+
+      <navbar-admin home_url="{{URL('/')}}" logo="{{URL('/images/logo.png')}}" route_dash="{{route('dashboard')}}" route_patients="{{route('patients_page')}}" route_settings="{{url('/settings')}}" route_logout="{{ route('logout') }}">
+          <template v-slot:csrf>
+              {{ csrf_field() }}
+          </template>
+        {{ csrf_field() }}
+      </navbar-admin>
+
+
+
       @yield('content')
     </div>
 

@@ -53,50 +53,69 @@
                     </div>
                 </div>
 
-                <div class="mt-6" v-if="JSON.parse(history.ATCD).length > 0">
+
+
+                <div class="mt-6">
                     <h2 class="font-semibold uppercase text-gray-700 text-sm">ATCD:</h2>
                     <div v-if="!isUpdate" class="bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal">
 
                         <div class="flex">
-                            <span v-for="tag, index in JSON.parse(history.ATCD)" class="flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                                {{tag.name}}
-                            </span>
+                            <div v-if="JSON.parse(history.ATCD).length > 0" class="flex items-center">
+                                <span v-for="tag, index in JSON.parse(history.ATCD)" class="mr-2 bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700">
+                                    {{tag.name}}
+                                </span>
+                            </div>
+                            <span v-else>Vide</span>
                         </div>
 
                     </div>
-                    <quick-reply v-else :items="items" placeholder="Test 1" @tags="setATCD" :selected="tagsATCD"></quick-reply>
+                    <quick-reply v-else :items="itemsATCD" placeholder="Veuillez saisir les ATCD" @tags="setATCD" :selected="tagsATCD"></quick-reply>
                 </div>
 
-                <div class="mt-6" v-if="JSON.parse(history.EXCV).length > 0">
+                <div class="mt-6">
                     <h2 class="font-semibold uppercase text-gray-700 text-sm">EXCV:</h2>
 
                     <div v-if="!isUpdate" class="bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal">
 
                         <div class="flex">
-                            <span v-for="tag, index in JSON.parse(history.EXCV)" class="flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                                {{tag.name}}
+                            <div v-if="JSON.parse(history.EXCV).length > 0" class="flex items-center">
+                                <span v-for="tag, index in JSON.parse(history.EXCV)" class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+                                    {{tag.name}}
+                                </span>
+                            </div>
+
+                            <span v-else class="flex items-center px-3 py-1 text-sm font-semibold text-gray-500 mr-2">
+                                Vide
                             </span>
+
                         </div>
 
                     </div>
 
-                    <quick-reply v-else :items="items" placeholder="Test 2" @tags="setEXCV" :selected="tagsEXCV"></quick-reply>
+                    <quick-reply v-else :items="itemsEXCV" placeholder="Veuillez saisir les EXCV" @tags="setEXCV" :selected="tagsEXCV"></quick-reply>
                 </div>
 
-                <div class="mt-6" v-if="JSON.parse(history.CAF).length > 0">
+                <div class="mt-6">
                     <h2 class="font-semibold uppercase text-gray-700 text-sm">CAF:</h2>
 
                     <div v-if="!isUpdate" class="bg-white focus:outline-none focus:shadow-none border border-gray-300 rounded-lg py-2 px-4 block w-full appearance-none leading-normal">
 
                         <div class="flex">
-                            <span v-for="tag, index in JSON.parse(history.CAF)" class="flex items-center bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
-                                {{tag.name}}
+                            <div v-if="JSON.parse(history.CAF).length > 0" class="flex items-center">
+                                <span v-for="tag, index in JSON.parse(history.CAF)" class="bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2">
+                                    {{tag.name}}
+                                </span>
+                            </div>
+
+                            <span v-else class="flex items-center px-3 py-1 text-sm font-semibold text-gray-500 mr-2">
+                                Vide
                             </span>
+
                         </div>
 
                     </div>
 
-                    <quick-reply v-else :items="items" placeholder="Veuillez saisir les Antécédence" @tags="setCAF" :selected="tagsCAF">
+                    <quick-reply v-else :items="itemsCAF" placeholder="Veuillez saisir les CAF" @tags="setCAF" :selected="tagsCAF">
                     </quick-reply>
                 </div>
 
@@ -133,7 +152,7 @@
 
 <script>
 export default {
-    props: ['patient', 'history', 'remove_url', 'redirect_path'],
+    props: ['patient', 'history', 'remove_url', 'redirect_path', 'settings'],
     data: function() {
         return {
             showModal: false,
@@ -144,6 +163,9 @@ export default {
             tagsATCD: JSON.parse(this.history.ATCD),
             tagsEXCV: JSON.parse(this.history.EXCV),
             tagsCAF: JSON.parse(this.history.CAF),
+            itemsATCD: JSON.parse(this.settings.ATCD),
+            itemsEXCV: JSON.parse(this.settings.EXCV),
+            itemsCAF: JSON.parse(this.settings.CAF),
             tag: '',
             tags: [],
             isLoading: false,
@@ -151,112 +173,6 @@ export default {
                 text: null,
                 type: null
             },
-            items: [{
-                    name: 'Traumatisme',
-                    symbole: '𝓩'
-                },
-                {
-                    name: 'Fracture',
-                    symbole: 'F̸'
-                },
-                {
-                    name: 'Tissu',
-                    symbole: 'T̸'
-                },
-                {
-                    name: 'Grossesse',
-                    symbole: 'G̅'
-                },
-                {
-                    name: 'Grossesse extra urerine',
-                    symbole: 'GEU'
-                },
-                {
-                    name: 'Pression',
-                    symbole: 'P̅'
-                },
-                {
-                    name: 'Diabeter',
-                    symbole: '(D)'
-                },
-                {
-                    name: 'Douleur',
-                    symbole: 'D̅'
-                },
-                {
-                    name: 'Diarrhée',
-                    symbole: 'D̲'
-                },
-                {
-                    name: 'carrot',
-                    symbole: 'D̲ C'
-                },
-                {
-                    name: 'Histolo',
-                    symbole: 'H̸'
-                },
-                {
-                    name: 'Cytologie',
-                    symbole: 'C̸'
-                },
-                {
-                    name: 'Trouble psychique',
-                    symbole: '𝒯 psy'
-                },
-                {
-                    name: 'Insuffisance coronarienne',
-                    symbole: 'I Cˣ'
-                },
-                {
-                    name: 'Insuffisance respiratoire',
-                    symbole: 'I Resp'
-                },
-                {
-                    name: 'Insuffisance rerale',
-                    symbole: 'I Rᴸ'
-                },
-                {
-                    name: 'Insuffisance hépatique',
-                    symbole: 'I Hep'
-                },
-                {
-                    name: 'Hysterie',
-                    symbole: 'H'
-                },
-                {
-                    name: 'Splenomegalie',
-                    symbole: 'SMG'
-                },
-                {
-                    name: 'Hépatomégalie',
-                    symbole: 'HMG'
-                },
-                {
-                    name: 'Adénopathie',
-                    symbole: 'ADP'
-                },
-                {
-                    name: 'Adénopathie latero cervicale',
-                    symbole: 'ADP+LC'
-                },
-                {
-                    name: 'Ganglion',
-                    symbole: 'gg'
-                },
-                {
-                    name: 'Rein',
-                    symbole: 'Rᶦ'
-                },
-                {
-                    name: 'Néphrectomie',
-                    symbole: 'Řᶦ'
-                },
-                {
-                    name: 'Vesicle biliar',
-                    symbole: 'VB'
-                }
-
-            ],
         }
     },
     methods: {

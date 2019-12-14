@@ -152,7 +152,7 @@ export default {
             } else {
                 this.isLoading = false;
                 this.message = {
-                    text: "Assurez-vous que toutes le poids et remplies.",
+                    text: "Assurez-vous que le poids et remplies.",
                     type: 'error',
                 }
                 Bus.$emit('flash-message', this.message);

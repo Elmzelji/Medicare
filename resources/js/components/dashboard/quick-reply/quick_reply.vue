@@ -44,9 +44,11 @@ export default {
     data: function() {
         return {
             isOpen: false,
-            search: '',
+            search: "",
             tags: this.selected,
             arrowCounter: -1,
+            deleteable: false,
+            deletecounter: 0,
         }
     },
     methods: {
@@ -82,8 +84,19 @@ export default {
             }
         },
         onDeleteDown() {
-            if (this.tags)
-                this.tags.pop();
+            if (this.deletecounter == 0) {
+                if (this.search.length == 0) {
+                    this.deleteable = false;
+                    this.deletecounter = 1;
+                }
+            } else {
+                this.deleteable = true;
+                if (this.tags && this.deleteable) {
+                    this.tags.pop();
+                    this.deleteable = false;
+                    this.deletecounter = 0;
+                }
+            }
         },
         filterResults() {
             this.results = this.items.filter(item => item.name.toLowerCase().indexOf(this.search.toLowerCase()) > -1);

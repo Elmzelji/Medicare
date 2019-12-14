@@ -11,11 +11,13 @@ window.Bus = new Vue();
 
 Vue.component('remove-record', require('./components/models/remove.vue').default);
 
+Vue.component('navbar-admin', require('./components/dashboard/navbar.vue').default);
 Vue.component('dashboard-stats', require('./components/dashboard/dashboard_stats.vue').default);
 Vue.component('loader', require('./components/dashboard/loader.vue').default);
 Vue.component('alert', require('./components/dashboard/alert.vue').default);
 Vue.component('quick-reply', require('./components/dashboard/quick-reply/quick_reply.vue').default);
 Vue.component('gender', require('./components/dashboard/gender.vue').default);
+
 
 
 Vue.component('patients', require('./components/patients/patientsComponent.vue').default);

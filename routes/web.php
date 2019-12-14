@@ -3,6 +3,7 @@
 
 Route::get('/', 'publicController@index')->name('frontpage');
 
+// Auth::routes(['register' => false]);
 Auth::routes();
 
 Route::resource('apipatients', 'PatientController');

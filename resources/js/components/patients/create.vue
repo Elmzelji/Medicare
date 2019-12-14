@@ -20,10 +20,11 @@
         </div>
 
         <form id="validated-form">
+
             <slot></slot>
 
-            <div class="mt-4 flex">
-                <div class="w-1/3">
+            <div class="mt-4 flex flex-col sm:flex-row">
+                <div class="w-full sm:w-1/3">
                     <h1 class="font-medium text-sm text-gray-600 uppercase">INFOS PERSONNELLES</h1>
                     <div class="mt-6">
                         <h2 class="font-semibold uppercase text-gray-700 text-sm">Prénom:<span class="text-red-700">*</span></h2>
@@ -61,7 +62,7 @@
                           v-model="birthDate" required>
                     </div>
                 </div>
-                <div class="w-1/3 mx-6">
+                <div class="w-full sm:w-1/3 mt-10 sm:my-0 sm:mx-6">
                     <h1 class="font-medium text-sm text-gray-600 uppercase">Contact</h1>
                     <div class="mt-6">
                         <h2 class="font-semibold uppercase text-gray-700 text-sm">Téléphone:</h2>
@@ -74,7 +75,7 @@
                           v-model="addresse">
                     </div>
                 </div>
-                <div class="w-1/3">
+                <div class="w-full sm:w-1/3 my-10 sm:my-0">
                     <h1 class="font-medium text-sm text-gray-600 uppercase">référencement</h1>
                     <div class="mt-6">
                         <h2 class="font-semibold uppercase text-gray-700 text-sm">Envoyé par:</h2>
